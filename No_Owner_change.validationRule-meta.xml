@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Owner_change</fullName>
+    <active>true</active>
+    <description>No_Owner_change unless country and lead source ,No of employees filled in</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()), 
+$Profile.Name &lt;&gt; &apos;System Administrator&apos;, 
+$Profile.Name &lt;&gt; &apos;Contract Manager&apos;, 
+ISCHANGED(OwnerId), 
+ISBLANK(Country), 
+ISBLANK( TEXT(LeadSource  ) ) || ISBLANK(NumberOfEmployees),
+IF($Profile.Name = &apos;System Administrator&apos;, false, ISBLANK(NumberOfEmployees)||ISBLANK(Country)) ,
+IF($Profile.Name = &apos;Contract Manager&apos;, false, ISBLANK(NumberOfEmployees)) 
+)</errorConditionFormula>
+    <errorMessage>No. of Employees, Lead Source and Country cannot be blank</errorMessage>
+</ValidationRule>

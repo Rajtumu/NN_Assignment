@@ -17,7 +17,7 @@ global class CountriesBatchClass implements Database.Batchable<sObject>,Database
              if(cont.Name!=currentCountriesMap.get('name')){
                 cont.Name=currentCountriesMap.get('name'); 
              } 
-             if(cont.alpha2Code__c!=currentCountriesMap.get('alpha2Code')){
+             if(cont.alpha2Code__c=currentCountriesMap.get('alpha2Code')){
                 cont.alpha2Code__c=currentCountriesMap.get('alpha2Code'); 
              }
              if(cont.alpha3Code__c!=currentCountriesMap.get('alpha3Code')){
